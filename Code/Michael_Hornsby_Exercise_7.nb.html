@@ -1753,38 +1753,55 @@ summary {
 <div id="number-1" class="section level1">
 <h1>Number 1</h1>
 <p>This code chunk below creates my funtion</p>
+<p>I spent about 5 hours trying to figure out why my one fuction would not return the data set ‘my_data’ to the global environment. Seeing as how I couldn’t figure that out, I just combined everything into one function to give the closest possible answer.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXkuZnVuY3Rpb24gPC0gZnVuY3Rpb24oeCwgeSwgcCkge1xuXG5tb2RlbCA8LSBsbSh5IH4geClcblxucmVzaWR1YWxzIDwtIHJlc2lkdWFscyhtb2RlbClcblxubXlfZGF0YSA8LSBhcy5kYXRhLmZyYW1lKGNiaW5kKHgsIHksIHJlc2lkdWFscykpXG5cbm9yZGVyX3ZlY3RvciA8LSBvcmRlcihhYnMobXlfZGF0YSRyZXNpZHVhbHMpLCBkZWNyZWFzaW5nID0gVFJVRSlcblxubXlfZGF0YSA8LSBteV9kYXRhW29yZGVyX3ZlY3RvcixdXG5cbmxvZ2ljYWxfdmVjdG9yIDwtIChjKHJlcChUUlVFLCBwKSwgcmVwKEZBTFNFLGxlbmd0aChteV9kYXRhJHgpIC0gcCkpKVxuXG5teV9kYXRhJG91dGNvbWUgPC0gbG9naWNhbF92ZWN0b3JcblxucmV0dXJuKG15X2RhdGEpXG5cbn1cbmBgYCJ9 -->
-<pre class="r"><code>my.function &lt;- function(x, y, p) {
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0xvYWQgdGhlIGNhciBwYWNrYWdlXG5saWJyYXJ5KGNhcilcblxubXkuZnVuY3Rpb24gPC0gZnVuY3Rpb24oeHZhciwgeXZhciwgcCkge1xuICBcbiMgQ3JlYXRlIHRoZSBtb2RlbCBhbmQgcmVzaWR1YWxzXG4gIFxubW9kZWwgPC0gbG0oeXZhciB+IHh2YXIpXG5cbnJlc2lkdWFscyA8LSByZXNpZHVhbHMobW9kZWwpXG5cbm15X2RhdGEgPC0gYXMuZGF0YS5mcmFtZShjYmluZCh4dmFyLCB5dmFyLCByZXNpZHVhbHMpKVxuXG4jIENyZWF0ZSBhbiBvcmRlciB2ZWN0b3IgYW5kIG9yZGVyIHRoZSByZXNpZHVhbHMgZnJvbSBsYXJnZXN0IHRvIHNtYWxsZXN0XG5vcmRlcl92ZWN0b3IgPC0gb3JkZXIoYWJzKG15X2RhdGEkcmVzaWR1YWxzKSwgZGVjcmVhc2luZyA9IFRSVUUpXG5cbm15X2RhdGEgPC0gbXlfZGF0YVtvcmRlcl92ZWN0b3IsXVxuXG4jIENyZWF0ZSB0aGUgbG9naWNhbCB2ZWN0b3IsIGFkZCBpdCB0byBteSBkYXRhIHNldCwgYW5kIHJldHVybiB0aGUgZGF0YSBzZXRcblxubG9naWNhbF92ZWN0b3IgPC0gKGMocmVwKFRSVUUsIHApLCByZXAoRkFMU0UsbGVuZ3RoKG15X2RhdGEkeHZhcikgLSBwKSkpXG5cbm15X2RhdGEkb3V0Y29tZSA8LSBsb2dpY2FsX3ZlY3RvclxuXG5teV9kYXRhIDwtIGRhdGEuZnJhbWUobXlfZGF0YSlcblxuIyBUaGlzIGNyZWF0ZXMgdGhlIHNjYXR0ZXJwbG90IHdpdGggdGhlIHJlZ2xpbmUuXG5cbnNjYXR0ZXJwbG90KHggPSBteV9kYXRhJHh2YXIsIHkgPSBteV9kYXRhJHl2YXIsIHJlZ0xpbmUgPSBUUlVFLCBncm91cHMgPSBteV9kYXRhJG91dGNvbWUpXG59XG5cbiMgbG9hZCB0aGUgaXJpcyBkYXRhIGFuZCBydW4gdGhlIGZ1bmN0aW9uLiAgVGhlIGlyaXMgZGF0YSBoYXMgMTUwIG9ic2VydmF0aW9ucywgXG4jIHNvIEkgdXNlZCBwIHRvIGJlIDE1LCBvciAxMCUgb2YgdGhvc2UgIEkgdXNlZCBTZXBhbCBMZW5ndGggYXMgeCBhbmQgXG4jIFBldGFsIExlbmd0aCBhcyB5LlxuZGF0YShcImlyaXNcIilcblxubXkuZnVuY3Rpb24oaXJpcyRTZXBhbC5MZW5ndGgsIGlyaXMkUGV0YWwuTGVuZ3RoLCAxNSlcbmBgYCJ9 -->
+<pre class="r"><code>#Load the car package
+library(car)
 
-model &lt;- lm(y ~ x)
+my.function &lt;- function(xvar, yvar, p) {
+  
+# Create the model and residuals
+  
+model &lt;- lm(yvar ~ xvar)
 
 residuals &lt;- residuals(model)
 
-my_data &lt;- as.data.frame(cbind(x, y, residuals))
+my_data &lt;- as.data.frame(cbind(xvar, yvar, residuals))
 
+# Create an order vector and order the residuals from largest to smallest
 order_vector &lt;- order(abs(my_data$residuals), decreasing = TRUE)
 
 my_data &lt;- my_data[order_vector,]
 
-logical_vector &lt;- (c(rep(TRUE, p), rep(FALSE,length(my_data$x) - p)))
+# Create the logical vector, add it to my data set, and return the data set
+
+logical_vector &lt;- (c(rep(TRUE, p), rep(FALSE,length(my_data$xvar) - p)))
 
 my_data$outcome &lt;- logical_vector
 
-return(my_data)
+my_data &lt;- data.frame(my_data)
 
-}</code></pre>
+# This creates the scatterplot with the regline.
+
+scatterplot(x = my_data$xvar, y = my_data$yvar, regLine = TRUE, groups = my_data$outcome)
+}
+
+# load the iris data and run the function.  The iris data has 150 observations, 
+# so I used p to be 15, or 10% of those  I used Sepal Length as x and 
+# Petal Length as y.
+data(&quot;iris&quot;)
+
+my.function(iris$Sepal.Length, iris$Petal.Length, 15)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-<div id="number-2" class="section level1">
-<h1>Number 2</h1>
+<p>Also, I couldn’t figure out how to have the one regline without the curved reglines. I’m not really happy with how this script turned out, but I’ll use a stressbuster for a regrade if my grade turns out too low.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpNaWNoYWVsIEhvcm5zYnkgRXhlcmNpc2UgU2V0IDcNCg0KIyBOdW1iZXIgMQ0KVGhpcyBjb2RlIGNodW5rIGJlbG93IGNyZWF0ZXMgbXkgZnVudGlvbg0KDQpgYGB7cn0NCm15LmZ1bmN0aW9uIDwtIGZ1bmN0aW9uKHgsIHksIHApIHsNCg0KbW9kZWwgPC0gbG0oeSB+IHgpDQoNCnJlc2lkdWFscyA8LSByZXNpZHVhbHMobW9kZWwpDQoNCm15X2RhdGEgPC0gYXMuZGF0YS5mcmFtZShjYmluZCh4LCB5LCByZXNpZHVhbHMpKQ0KDQpvcmRlcl92ZWN0b3IgPC0gb3JkZXIoYWJzKG15X2RhdGEkcmVzaWR1YWxzKSwgZGVjcmVhc2luZyA9IFRSVUUpDQoNCm15X2RhdGEgPC0gbXlfZGF0YVtvcmRlcl92ZWN0b3IsXQ0KDQpsb2dpY2FsX3ZlY3RvciA8LSAoYyhyZXAoVFJVRSwgcCksIHJlcChGQUxTRSxsZW5ndGgobXlfZGF0YSR4KSAtIHApKSkNCg0KbXlfZGF0YSRvdXRjb21lIDwtIGxvZ2ljYWxfdmVjdG9yDQoNCnJldHVybihteV9kYXRhKQ0KDQp9DQpgYGANCg0KIyBOdW1iZXIgMg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpNaWNoYWVsIEhvcm5zYnkgRXhlcmNpc2UgU2V0IDcNCg0KIyBOdW1iZXIgMQ0KVGhpcyBjb2RlIGNodW5rIGJlbG93IGNyZWF0ZXMgbXkgZnVudGlvbg0KDQpJIHNwZW50IGFib3V0IDUgaG91cnMgdHJ5aW5nIHRvIGZpZ3VyZSBvdXQgd2h5IG15IG9uZSBmdWN0aW9uIHdvdWxkIG5vdCByZXR1cm4gdGhlIA0KZGF0YSBzZXQgJ215X2RhdGEnIHRvIHRoZSBnbG9iYWwgZW52aXJvbm1lbnQuICBTZWVpbmcgYXMgaG93IEkgY291bGRuJ3QgZmlndXJlIHRoYXQgb3V0LCANCkkganVzdCBjb21iaW5lZCBldmVyeXRoaW5nIGludG8gb25lIGZ1bmN0aW9uIHRvIGdpdmUgdGhlIGNsb3Nlc3QgcG9zc2libGUgYW5zd2VyLg0KDQpgYGB7cn0NCiNMb2FkIHRoZSBjYXIgcGFja2FnZQ0KbGlicmFyeShjYXIpDQoNCm15LmZ1bmN0aW9uIDwtIGZ1bmN0aW9uKHh2YXIsIHl2YXIsIHApIHsNCiAgDQojIENyZWF0ZSB0aGUgbW9kZWwgYW5kIHJlc2lkdWFscw0KICANCm1vZGVsIDwtIGxtKHl2YXIgfiB4dmFyKQ0KDQpyZXNpZHVhbHMgPC0gcmVzaWR1YWxzKG1vZGVsKQ0KDQpteV9kYXRhIDwtIGFzLmRhdGEuZnJhbWUoY2JpbmQoeHZhciwgeXZhciwgcmVzaWR1YWxzKSkNCg0KIyBDcmVhdGUgYW4gb3JkZXIgdmVjdG9yIGFuZCBvcmRlciB0aGUgcmVzaWR1YWxzIGZyb20gbGFyZ2VzdCB0byBzbWFsbGVzdA0Kb3JkZXJfdmVjdG9yIDwtIG9yZGVyKGFicyhteV9kYXRhJHJlc2lkdWFscyksIGRlY3JlYXNpbmcgPSBUUlVFKQ0KDQpteV9kYXRhIDwtIG15X2RhdGFbb3JkZXJfdmVjdG9yLF0NCg0KIyBDcmVhdGUgdGhlIGxvZ2ljYWwgdmVjdG9yLCBhZGQgaXQgdG8gbXkgZGF0YSBzZXQsIGFuZCByZXR1cm4gdGhlIGRhdGEgc2V0DQoNCmxvZ2ljYWxfdmVjdG9yIDwtIChjKHJlcChUUlVFLCBwKSwgcmVwKEZBTFNFLGxlbmd0aChteV9kYXRhJHh2YXIpIC0gcCkpKQ0KDQpteV9kYXRhJG91dGNvbWUgPC0gbG9naWNhbF92ZWN0b3INCg0KbXlfZGF0YSA8LSBkYXRhLmZyYW1lKG15X2RhdGEpDQoNCiMgVGhpcyBjcmVhdGVzIHRoZSBzY2F0dGVycGxvdCB3aXRoIHRoZSByZWdsaW5lLg0KDQpzY2F0dGVycGxvdCh4ID0gbXlfZGF0YSR4dmFyLCB5ID0gbXlfZGF0YSR5dmFyLCByZWdMaW5lID0gVFJVRSwgZ3JvdXBzID0gbXlfZGF0YSRvdXRjb21lKQ0KfQ0KDQojIGxvYWQgdGhlIGlyaXMgZGF0YSBhbmQgcnVuIHRoZSBmdW5jdGlvbi4gIFRoZSBpcmlzIGRhdGEgaGFzIDE1MCBvYnNlcnZhdGlvbnMsIA0KIyBzbyBJIHVzZWQgcCB0byBiZSAxNSwgb3IgMTAlIG9mIHRob3NlICBJIHVzZWQgU2VwYWwgTGVuZ3RoIGFzIHggYW5kIA0KIyBQZXRhbCBMZW5ndGggYXMgeS4NCmRhdGEoImlyaXMiKQ0KDQpteS5mdW5jdGlvbihpcmlzJFNlcGFsLkxlbmd0aCwgaXJpcyRQZXRhbC5MZW5ndGgsIDE1KQ0KYGBgDQoNCkFsc28sIEkgY291bGRuJ3QgZmlndXJlIG91dCBob3cgdG8gaGF2ZSB0aGUgb25lIHJlZ2xpbmUgd2l0aG91dCB0aGUgY3VydmVkIHJlZ2xpbmVzLg0KSSdtIG5vdCByZWFsbHkgaGFwcHkgd2l0aCBob3cgdGhpcyBzY3JpcHQgdHVybmVkIG91dCwgYnV0IEknbGwgdXNlIGEgc3RyZXNzYnVzdGVyIGZvciANCmEgcmVncmFkZSBpZiBteSBncmFkZSB0dXJucyBvdXQgdG9vIGxvdy4=</div>
 
 
 
