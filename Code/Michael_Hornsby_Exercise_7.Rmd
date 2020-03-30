@@ -41,7 +41,17 @@ my_data <- data.frame(my_data)
 
 # This creates the scatterplot with the regline.
 
-scatterplot(x = my_data$xvar, y = my_data$yvar, regLine = TRUE, groups = my_data$outcome)
+scatterplot(x = my_data$xvar,
+            y = my_data$residuals,
+            regLine = TRUE,
+            groups = my_data$outcome,
+            legend = FALSE,
+            smooth = FALSE,
+            xlab = "Sepal Length",
+            ylab = "Residual",
+            main = "Highlighted Largest Residuals")
+
+print(my_data)
 }
 
 # load the iris data and run the function.  The iris data has 150 observations, 
@@ -52,6 +62,11 @@ data("iris")
 my.function(iris$Sepal.Length, iris$Petal.Length, 15)
 ```
 
-Also, I couldn't figure out how to have the one regline without the curved reglines.
+I couldn't figure out how to have the one regline with 2 highlighted colors.
+The by.groups arguement for the scatterplot function didn't really work how the 
+help page suggested in that regard.
+ALso, I only added the print within the function at the end specifically 
+because I couldn't get it to return to the environment properly and I wanted to 
+demonstrade it provide the appropriate logical outcome.
 I'm not really happy with how this script turned out, but I'll use a stressbuster for 
-a regrade if my grade turns out too low.
+a regrade if necessary.
