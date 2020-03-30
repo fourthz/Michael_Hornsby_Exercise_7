@@ -1750,9 +1750,41 @@ summary {
 
 <!-- rnb-text-begin -->
 <p>Michael Hornsby Exercise Set 7</p>
+<div id="number-1" class="section level1">
+<h1>Number 1</h1>
+<p>This code chunk below creates my funtion</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXkuZnVuY3Rpb24gPC0gZnVuY3Rpb24oeCwgeSwgcCkge1xuXG5tb2RlbCA8LSBsbSh5IH4geClcblxucmVzaWR1YWxzIDwtIHJlc2lkdWFscyhtb2RlbClcblxubXlfZGF0YSA8LSBhcy5kYXRhLmZyYW1lKGNiaW5kKHgsIHksIHJlc2lkdWFscykpXG5cbm9yZGVyX3ZlY3RvciA8LSBvcmRlcihhYnMobXlfZGF0YSRyZXNpZHVhbHMpLCBkZWNyZWFzaW5nID0gVFJVRSlcblxubXlfZGF0YSA8LSBteV9kYXRhW29yZGVyX3ZlY3RvcixdXG5cbmxvZ2ljYWxfdmVjdG9yIDwtIChjKHJlcChUUlVFLCBwKSwgcmVwKEZBTFNFLGxlbmd0aChteV9kYXRhJHgpIC0gcCkpKVxuXG5teV9kYXRhJG91dGNvbWUgPC0gbG9naWNhbF92ZWN0b3JcblxucmV0dXJuKG15X2RhdGEpXG5cbn1cbmBgYCJ9 -->
+<pre class="r"><code>my.function &lt;- function(x, y, p) {
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpNaWNoYWVsIEhvcm5zYnkgRXhlcmNpc2UgU2V0IDc=</div>
+model &lt;- lm(y ~ x)
+
+residuals &lt;- residuals(model)
+
+my_data &lt;- as.data.frame(cbind(x, y, residuals))
+
+order_vector &lt;- order(abs(my_data$residuals), decreasing = TRUE)
+
+my_data &lt;- my_data[order_vector,]
+
+logical_vector &lt;- (c(rep(TRUE, p), rep(FALSE,length(my_data$x) - p)))
+
+my_data$outcome &lt;- logical_vector
+
+return(my_data)
+
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="number-2" class="section level1">
+<h1>Number 2</h1>
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpNaWNoYWVsIEhvcm5zYnkgRXhlcmNpc2UgU2V0IDcNCg0KIyBOdW1iZXIgMQ0KVGhpcyBjb2RlIGNodW5rIGJlbG93IGNyZWF0ZXMgbXkgZnVudGlvbg0KDQpgYGB7cn0NCm15LmZ1bmN0aW9uIDwtIGZ1bmN0aW9uKHgsIHksIHApIHsNCg0KbW9kZWwgPC0gbG0oeSB+IHgpDQoNCnJlc2lkdWFscyA8LSByZXNpZHVhbHMobW9kZWwpDQoNCm15X2RhdGEgPC0gYXMuZGF0YS5mcmFtZShjYmluZCh4LCB5LCByZXNpZHVhbHMpKQ0KDQpvcmRlcl92ZWN0b3IgPC0gb3JkZXIoYWJzKG15X2RhdGEkcmVzaWR1YWxzKSwgZGVjcmVhc2luZyA9IFRSVUUpDQoNCm15X2RhdGEgPC0gbXlfZGF0YVtvcmRlcl92ZWN0b3IsXQ0KDQpsb2dpY2FsX3ZlY3RvciA8LSAoYyhyZXAoVFJVRSwgcCksIHJlcChGQUxTRSxsZW5ndGgobXlfZGF0YSR4KSAtIHApKSkNCg0KbXlfZGF0YSRvdXRjb21lIDwtIGxvZ2ljYWxfdmVjdG9yDQoNCnJldHVybihteV9kYXRhKQ0KDQp9DQpgYGANCg0KIyBOdW1iZXIgMg0K</div>
 
 
 

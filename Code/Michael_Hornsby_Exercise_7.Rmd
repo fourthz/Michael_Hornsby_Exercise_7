@@ -4,3 +4,30 @@ output: html_notebook
 ---
 
 Michael Hornsby Exercise Set 7
+
+# Number 1
+This code chunk below creates my funtion
+
+```{r}
+my.function <- function(x, y, p) {
+
+model <- lm(y ~ x)
+
+residuals <- residuals(model)
+
+my_data <- as.data.frame(cbind(x, y, residuals))
+
+order_vector <- order(abs(my_data$residuals), decreasing = TRUE)
+
+my_data <- my_data[order_vector,]
+
+logical_vector <- (c(rep(TRUE, p), rep(FALSE,length(my_data$x) - p)))
+
+my_data$outcome <- logical_vector
+
+return(my_data)
+
+}
+```
+
+# Number 2
