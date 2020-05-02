@@ -1,0 +1,121 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Michael Hornsby Exercise Set 7
+
+# Number 1
+This code chunk below creates my funtion
+
+I spent about 5 hours trying to figure out why my one fuction would not return the 
+data set 'my_data' to the global environment.  Seeing as how I couldn't figure that out, 
+I just combined everything into one function to give the closest possible answer.
+
+*I've copied your code below to try to create a pure function.*
+
+```{r}
+#Load the car package
+library(car)
+
+my.function <- function(xvar, yvar, p) {
+  
+# Create the model and residuals
+  
+model <- lm(yvar ~ xvar)
+
+residuals <- residuals(model)
+
+my_data <- as.data.frame(cbind(xvar, yvar, residuals))
+
+# Create an order vector and order the residuals from largest to smallest
+order_vector <- order(abs(my_data$residuals), decreasing = TRUE)
+
+my_data <- my_data[order_vector,]
+
+# Create the logical vector, add it to my data set, and return the data set
+
+logical_vector <- (c(rep(TRUE, p), rep(FALSE,length(my_data$xvar) - p)))
+
+my_data$outcome <- logical_vector
+
+my_data <- data.frame(my_data)
+
+return(my_data)
+
+}
+
+# Now the call
+
+data("iris")
+the_data <- my.function(iris$Sepal.Length, iris$Petal.Length, 15)
+
+# It worked for me! Look at the_data and you have everything you need.
+
+```
+
+
+
+
+*You should not put your scatterplot in your function. This should be drawn*
+*outside your function. Notice, for example, how you had to put labels in your*
+*function. These will be invalid if you change the data set. (-2)*
+
+```{r}
+#Load the car package
+library(car)
+
+my.function <- function(xvar, yvar, p) {
+  
+# Create the model and residuals
+  
+model <- lm(yvar ~ xvar)
+
+residuals <- residuals(model)
+
+my_data <- as.data.frame(cbind(xvar, yvar, residuals))
+
+# Create an order vector and order the residuals from largest to smallest
+order_vector <- order(abs(my_data$residuals), decreasing = TRUE)
+
+my_data <- my_data[order_vector,]
+
+# Create the logical vector, add it to my data set, and return the data set
+
+logical_vector <- (c(rep(TRUE, p), rep(FALSE,length(my_data$xvar) - p)))
+
+my_data$outcome <- logical_vector
+
+my_data <- data.frame(my_data)
+
+# This creates the scatterplot with the regline.
+
+scatterplot(x = my_data$xvar,
+            y = my_data$residuals,
+            regLine = TRUE,
+            groups = my_data$outcome,
+            legend = FALSE,
+            smooth = FALSE,
+            xlab = "Sepal Length",
+            ylab = "Residual",
+            main = "Highlighted Largest Residuals")
+
+print(my_data)
+}
+
+# load the iris data and run the function.  The iris data has 150 observations, 
+# so I used p to be 15, or 10% of those  I used Sepal Length as x and 
+# Petal Length as y.
+data("iris")
+
+my.function(iris$Sepal.Length, iris$Petal.Length, 15)
+```
+
+I couldn't figure out how to have the one regline with 2 highlighted colors.
+The by.groups arguement for the scatterplot function didn't really work how the 
+help page suggested in that regard.
+ALso, I only added the print within the function at the end specifically 
+because I couldn't get it to return to the environment properly and I wanted to 
+demonstrade it provide the appropriate logical outcome.
+I'm not really happy with how this script turned out, but I'll use a stressbuster for 
+a regrade if necessary.
